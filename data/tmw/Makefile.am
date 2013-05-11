@@ -13,7 +13,7 @@ tmw:
 
 EXTRA_DIST = tmw.desktop \
 	    tmw.manaplus \
-	    icons/tmw.ico \
-	    icons/tmw.png \
-	    icons/tmw.xpm \
+	    icons/tmw-client.ico \
+	    icons/tmw-client.png \
+	    icons/tmw-client.xpm \
 	    images/loginwallpaper_800x600.png

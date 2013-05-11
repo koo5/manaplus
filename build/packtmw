@@ -10,5 +10,4 @@ makensis -DDLLDIR=$dir/../libs/dll/ \
     -DPRODUCT_VERSION="1.3.5.12" \
     -DEXESUFFIX=/src \
     -DUPX=true \
-    setup.nsi
-
+    tmw.nsi

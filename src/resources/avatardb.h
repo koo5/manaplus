@@ -1,6 +1,7 @@
 /*
  *  The ManaPlus Client
- *  Copyright (C) 2008  Aethyra Development Team
+ *  Copyright (C) 2004-2009  The Mana World Development Team
+ *  Copyright (C) 2009-2010  The Mana Developers
  *  Copyright (C) 2011-2013  The ManaPlus Developers
  *
  *  This file is part of The ManaPlus Client.
@@ -19,49 +20,20 @@
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#ifndef CHARDB_MANAGER_H
-#define CHARDB_MANAGER_H
+#ifndef AVATAR_DB_H
+#define AVATAR_DB_H
 
-#include <map>
-#include <string>
+#include "localconsts.h"
 
-#include "utils/xml.h"
+class BeingInfo;
 
-#include <vector>
-
-/**
- * Char information database.
- */
-namespace CharDB
+namespace AvatarDB
 {
-    /**
-     * Loads the chars data.
-     */
     void load();
 
-    /**
-     * Clear the chars data
-     */
     void unload();
 
-    void loadMinMax(const XmlNodePtr node,
-                    unsigned *const min, unsigned *const max);
-
-    unsigned getMinHairColor() A_WARN_UNUSED;
-
-    unsigned getMaxHairColor() A_WARN_UNUSED;
-
-    unsigned getMinHairStyle() A_WARN_UNUSED;
-
-    unsigned getMaxHairStyle() A_WARN_UNUSED;
-
-    unsigned getMinStat() A_WARN_UNUSED;
-
-    unsigned getMaxStat() A_WARN_UNUSED;
-
-    unsigned getSumStat() A_WARN_UNUSED;
-
-    const std::vector<int> &getDefaultItems() A_WARN_UNUSED;
-}  // namespace CharDB
+    BeingInfo *get(const int id) A_WARN_UNUSED;
+}
 
 #endif

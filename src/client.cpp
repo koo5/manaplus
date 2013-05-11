@@ -77,6 +77,7 @@
 #include "net/npchandler.h"
 #include "net/partyhandler.h"
 
+#include "resources/avatardb.h"
 #include "resources/chardb.h"
 #include "resources/colordb.h"
 #include "resources/emotedb.h"
@@ -297,7 +298,8 @@ Client::Client(const Options &options) :
     mFpsManager(),
     mSkin(nullptr),
     mButtonPadding(1),
-    mButtonSpacing(3)
+    mButtonSpacing(3),
+    mKeyboardHeight(0)
 {
     mInstance = this;
 
@@ -759,6 +761,7 @@ void Client::gameClear()
     ItemDB::unload();
     MonsterDB::unload();
     NPCDB::unload();
+    AvatarDB::unload();
     PaletteDB::unload();
     PETDB::unload();
     StatusEffect::unload();
@@ -1408,6 +1411,7 @@ int Client::gameExec()
 #ifdef MANASERV_SUPPORT
                     SpecialDB::load();
 #endif
+                    AvatarDB::load();
                     NPCDB::load();
                     PETDB::load();
                     EmoteDB::load();
@@ -2928,7 +2932,7 @@ void Client::windowRemoved(const Window *const window)
 
 void Client::updateScreenKeyboard(int height A_UNUSED)
 {
-//    logger->log("keyboard height: %d", height);
+    instance()->mKeyboardHeight = height;
 }
 
 void Client::checkConfigVersion()
@@ -2941,6 +2945,13 @@ void Client::checkConfigVersion()
         if (config.getIntValue("npcfontSize") == 13)
             config.deleteKey("npcfontSize");
     }
+    if (version < 2)
+    {
+        if (config.getIntValue("screenButtonsSize") == 1)
+            config.deleteKey("screenButtonsSize");
+        if (config.getIntValue("screenJoystickSize") == 1)
+            config.deleteKey("screenJoystickSize");
+    }
 
-    config.setValue("cfgver", 1);
+    config.setValue("cfgver", 2);
 }
